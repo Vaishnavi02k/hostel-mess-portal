@@ -1,22 +1,37 @@
 import './App.css';
-// import { Button, Flex } from 'antd';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import LoginForm from './components/login/LoginForm';
 import Trial from './components/Trial';
+import Navbar from './components/Navbar';
+import Inventory from './components/Inventory/Inventory';
+import InventoryForm from './components/Inventory/InventoryForm';
+import Anouncement from './components/Anouncement/Anouncement';
 
 function App() {
   return (
-    <Router> {/* ✅ Wrap everything inside Router */}
-      <div>
-        {/* <div>Helloo</div> */}
-        {/* <Button type="primary">Primary Button</Button> */}
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const showNavbar = location.pathname !== "/"; // ✅ Hide Navbar on `/`, show elsewhere
+
+  return (
+    <div>
+      {showNavbar && <Navbar  />} {/* ✅ Conditionally render Navbar */}
+      <div className={showNavbar ? "content" : ""}>
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/trial" element={<Trial />} />
-          <Route path="/:username" element={<h1>Welcome!</h1>} />
+          {/* <Route path="/" element={<LoginForm />} /> */}
+          {/* <Route path="/trial" element={<Trial />} /> */}
+          {/* <Route path="/:username" element={<h1>Welcome, User!</h1>} /> */}
+          <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/announcement" element={<Anouncement/>}/>
         </Routes>
       </div>
-    </Router>
+    </div>
   );
 }
 
