@@ -17,7 +17,7 @@ function Navbar() {
             <div className="flex w-full items-center">
                <img className="mt-4 pb-4 h-10" src="/logo.png" alt="Logo" />
                <Link className="m-4 text-lg text-black dark:text-white hover:text-white font-bold" to="/">
-                  VJTI MESS
+                  IIT MESS 
                </Link>
                <button 
                   className="px-2 pb-1 ml-auto mr-16 font-bold rounded text-black dark:text-white hover:bg-blue-700 hover:text-white xl:hidden"

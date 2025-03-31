@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Inventory from './components/Inventory/Inventory';
 import InventoryForm from './components/Inventory/InventoryForm';
 import Anouncement from './components/Anouncement/Anouncement';
+import MessMenu from './components/MessMenu/MessMenu';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function AppContent() {
           {/* <Route path="/:username" element={<h1>Welcome, User!</h1>} /> */}
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/announcement" element={<Anouncement/>}/>
+          <Route path="/messmenu" element={<MessMenu/>}/>
         </Routes>
       </div>
     </div>

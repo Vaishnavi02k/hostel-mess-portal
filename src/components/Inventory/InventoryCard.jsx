@@ -52,7 +52,7 @@ const InventoryCard = ({ id, name, quantity, category }) => {
                     // backgroundRepeat: 'no-repeat',
                     width: 220,
 
-                }} />
+                }}>
             <Text className='text-base' type='warning'>Available <span className='font-bold'>{productQuantity} {productCategory}</span></Text>
             <br />
             {visibility ? (
@@ -74,6 +74,7 @@ const InventoryCard = ({ id, name, quantity, category }) => {
                     <Button className='border-2 border-red-300 m-1 ' onClick={() => onDelete()}>Delete</Button>
                 </div>
             )}
+            </Card>
         </div>
     );
 };
