@@ -1,0 +1,93 @@
+/* 🌿 Green Theme Styling */
+.mess-menu-wrapper {
+    padding: 20px;
+    background-color: #e6f4ea; /* Light Green Background */
+    /* min-height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* 🌟 2-Column Layout */
+.mess-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns: Student Count & Meals */
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* 📌 Student Count - Large */
+.grid-item.student-count {
+    background-color: #4CAF50; /* Dark Green */
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 📌 Meal Section - Split into 2 Rows */
+.meal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 📌 Active Meal - Large */
+.grid-item.meal.active {
+    background-color: #4CAF50; /* Dark Green */
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Other Meals - Small & in One Row */
+.meal-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4 Meals in One Row */
+    gap: 10px;
+}
+
+.grid-item.meal {
+    background-color: #a8e6a2; /* Soft Green */
+    color: #1c3d1d; /* Dark Green Text */
+    padding: 12px;
+    text-align: left;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 📌 Make Inactive Meals Slightly Smaller */
+.grid-item.meal.small {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 900px) {
+    .mess-menu-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+
+    .meal-row {
+        grid-template-columns: repeat(2, 1fr); /* 2 meals per row */
+    }
+}
+
+@media (max-width: 600px) {
+    .meal-row {
+        grid-template-columns: 1fr; /* Stack meals vertically */
+    }
+}

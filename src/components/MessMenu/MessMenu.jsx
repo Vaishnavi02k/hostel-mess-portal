@@ -1,41 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import MessMenuCard from './MessMenuCard';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase-config';
+import React, { useEffect, useState } from "react";
+import MessMenuCard from "./MessMenuCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 function MessMenu() {
   const [menus, setMenus] = useState([]);
-  const messMenuRef= collection(db,"messmenu");
+  const messMenuRef = collection(db, "messMenu");
 
-  useEffect(()=>{
-    const getMenus = async ()=>{
+  useEffect(() => {
+    const getMenus = async () => {
       const data = await getDocs(messMenuRef);
-      // console.log(data);
-      setMenus(data.docs.map((doc)=>({
-        ...doc.data(),id:doc.id}
-      )))
+      const menuList = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id, // Firestore ID
+      }));
+
+      // Sort menus by numeric ID (converting ID to a number if it's stored as a string)
+      menuList.sort((a, b) => Number(a.id) - Number(b.id));
+
+      setMenus(menuList);
     };
     getMenus();
-  },[])
+  }, []);
+
   return (
-<div className="pt-24 dark:bg-gray-900 ">
-      <div className=" font-extrabold  dark:text-blue-600 text-4xl  text-center">Mess Menu</div>
+    <div className="pt-24 dark:bg-gray-900">
+      <div className="font-extrabold dark:text-blue-600 text-4xl text-center">
+        Mess Menu
+      </div>
       <div className="lg:ml-20 lg:mr-20 lg:mt-10 md:ml-12 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-4">
-        {menus.map((menu) => {
-          return (
-            <MessMenuCard
-              key={menu.id}
-              id={menu.id}
-              day={menu.day}
-              breakfast={menu.breakfast}
-              lunch={menu.lunch}
-              dinner={menu.dinner}
-            />
-          );
-        })}
+        {menus.map((menu) => (
+          <MessMenuCard
+            key={menu.id}
+            id={menu.id}
+            day={menu.day}
+            breakfast={menu.breakfast}
+            lunch={menu.lunch}
+            snacks={menu.snacks}
+            dinner={menu.dinner}
+          />
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default MessMenu
+export default MessMenu;
