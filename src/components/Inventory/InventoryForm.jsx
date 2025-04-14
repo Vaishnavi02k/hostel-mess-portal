@@ -1,96 +1,90 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Input, Select } from 'antd';
-import FormItem from 'antd/es/form/FormItem';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase-config';
-// import { v4 as uuidv4 } from "uuid";
+import { toast } from 'react-toastify';
+import { PlusCircleOutlined } from '@ant-design/icons';
 
+const { Option } = Select;
 
 const InventoryForm = () => {
-  const userCollectionRef = collection(db,"inventory");
-  const [formData, setFormData] = useState({productName: "", quantity: "", category: "" })
+  const [form] = Form.useForm();
+  const userCollectionRef = collection(db, "inventory");
+
   const onFinish = async (values) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      ...values,
-    }));
-    await addDoc(userCollectionRef,{...formData});
-    setTimeout(function () {
+    try {
+      await addDoc(userCollectionRef, values);
+      toast.success("✅ Product added successfully!");
+      form.resetFields();
+    } catch (error) {
+      toast.error("❌ Failed to add product.");
+      console.error(error);
+    }
+    await setTimeout(() => {
       window.location.reload();
-    },300)
+    }, 1000); 
   };
-
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,  // Dynamically updating the specific field
-    }));
-  };
-
-
-  const handleSelectChange = (value) => {
-    setFormData((prev) => ({
-      ...prev,
-      category: value, // Updating category
-    }));
-  };
-
-
 
   return (
-    <Form
+    <div className="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 px-6 py-6 rounded-2xl shadow-xl max-w-6xl mx-auto">
 
-      name="customized_form_controls"
-      className='flex p-4  flex-wrap mt-30'
-      onFinish={onFinish}
-    >
-      <Form.Item
-        label={<span className='dark:text-white'>Product Name</span>}
-        name="productName"
-        wrapperCol={{ span: 12 }}
-        rules={[
-          {
-            required: true,
-            message: 'Please input the Product Name!',
-          },
-        ]}
+      <Form
+        form={form}
+        layout="inline"
+        name="inventory_form"
+        onFinish={onFinish}
+        className="flex flex-wrap justify-center gap-4"
       >
-        <Input name="productName" value={formData.productName} onChange={handleChange} />
-      </Form.Item>
-      <Form.Item
-        name="quantity"
-        label="Quantity"
-      >
-        <Input name="quantity" value={formData.quantity} onChange={handleChange} />
-      </Form.Item>
-      <FormItem
-        name="category"
-        label="Category">
-        <Select
-          defaultValue="select"
-          options={[
-            {
-              value: 'Kg',
-              label: 'Kg',
-            },
-            {
-              value: 'Ltr',
-              label: 'Ltr',
-            },
+        <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center justify-center gap-2">
+          Add New Item
+        </h2>
+        <Form.Item
+          name="productName"
+          rules={[{ required: true, message: 'Enter product name' }]}
+        >
+          <Input
+            placeholder="Product Name"
+            className="rounded-lg border-green-300 focus:border-green-500"
+          />
+        </Form.Item>
 
-          ]}
-          onChange={handleSelectChange}
-          value={formData.category}
-        />
-      </FormItem>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          name="quantity"
+          rules={[{ required: true, message: 'Enter quantity' }]}
+        >
+          <Input
+            type="number"
+            placeholder="Quantity"
+            className="rounded-lg border-green-300 focus:border-green-500"
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="category"
+          rules={[{ required: true, message: 'Select category' }]}
+        >
+          <Select
+            placeholder="Category"
+            style={{ width: 120 }}
+            className="rounded-lg border-green-300"
+          >
+            <Option value="Kg">Kg</Option>
+            <Option value="Ltr">Ltr</Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="bg-green-500 hover:bg-green-600 transition-all duration-300"
+          >
+            Add Product
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
+
 export default InventoryForm;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MessMenuCard from "./MessMenuCard";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import UpdatePrices from "./UpdatePrices";
 
 function MessMenu() {
   const [menus, setMenus] = useState([]);
@@ -24,10 +25,11 @@ function MessMenu() {
   }, []);
 
   return (
-    <div className="pt-24 dark:bg-gray-900">
-      <div className="font-extrabold dark:text-blue-600 text-4xl text-center">
-        Mess Menu
-      </div>
+    <div className="dark:bg-gray-900">
+      {/* <div className="font-extrabold dark:text-blue-600 text-xl text-center">
+        Detailed Mess Menu
+      </div> */}
+      <UpdatePrices />
       <div className="lg:ml-20 lg:mr-20 lg:mt-10 md:ml-12 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-4">
         {menus.map((menu) => (
           <MessMenuCard

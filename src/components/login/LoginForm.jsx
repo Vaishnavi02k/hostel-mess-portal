@@ -11,8 +11,8 @@ function LoginForm() {
     const navigate = useNavigate(); // ✅ Correctly placed inside component
 
     useEffect(() => {
-        localStorage.setItem("username", "nouser");
-        localStorage.setItem("name", "nouser");
+        // localStorage.setItem("username", "nouser");
+        // localStorage.setItem("name", "nouser");
 
         const fetchUsers = async () => {
             try {
@@ -35,7 +35,7 @@ function LoginForm() {
             localStorage.setItem("username", values.username);
             localStorage.setItem("name", values.username);
             toast.success("Logged in Successfully!");
-            navigate(`/${values.username}`); // ✅ Works because `useNavigate()` is outside the function
+            navigate(`/${values.username}/dashboard`); // ✅ Works because `useNavigate()` is outside the function
         } else {
             toast.error("Invalid credentials!");
         }

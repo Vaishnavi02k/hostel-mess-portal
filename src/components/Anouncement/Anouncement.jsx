@@ -21,15 +21,16 @@ function Anouncement() {
 
             }
         )
+        window.location.reload();
 
     }
 
     return (
-        <div class="announcement-body max-w-screen-md mx-auto p-5">
+        <div class="announcement-body max-w-screen-md mx-auto p-5 bg-[#f4fff4] mt-8">
             <div class="text-center mb-16">
 
                 <h3 class="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-                    Announcement <span class="text-indigo-600">Form</span>
+                    Announcement <span class="text-green-600">Form</span>
                 </h3>
             </div>
 
@@ -40,7 +41,7 @@ function Anouncement() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Subject
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="Subject of Announcement" onChange={(e) => setSubject(e.target.value)} />
+                        <input class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="Subject of Announcement" onChange={(e) => setSubject(e.target.value)} />
                     </div>
                 </div>
 
@@ -49,11 +50,11 @@ function Anouncement() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Message
                         </label>
-                        <textarea rows="10" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => setMessage(e.target.value)}>
+                        <textarea rows="10" class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => setMessage(e.target.value)}>
 
                         </textarea>
                     </div>
-                    <button class="mx-auto shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
+                    <button class="mx-auto shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
                         Announce
                     </button>
                 </div>

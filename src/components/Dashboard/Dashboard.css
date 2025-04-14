@@ -2,10 +2,11 @@
 .mess-menu-wrapper {
     padding: 20px;
     background-color: #e6f4ea; /* Light Green Background */
-    /* min-height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    /* min-height: 100vh; */
+    font-family: 'Segoe UI', sans-serif;
 }
 
 /* 🌟 2-Column Layout */
@@ -39,22 +40,35 @@
     gap: 15px;
 }
 
-/* 📌 Active Meal - Large */
+/* 📌 Active Meal - Prominent */
 .grid-item.meal.active {
-    background-color: #4CAF50; /* Dark Green */
-    color: #fff;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding: 30px;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #388e3c;
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 20px 25px;
+    text-align: left;
+    border-radius: 16px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+/* 🍴 Inside p tags for meal details */
+.grid-item.meal.active p {
+    margin: 10px 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* 🟩 Optional - Add subtle border to meals for clarity */
+.grid-item.meal {
+    border: 1px solid #cceacc;
 }
 
 /* 📌 Other Meals - Small & in One Row */
 .meal-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 Meals in One Row */
+    grid-template-columns: repeat(3, 1fr); /* 3 Meals in One Row */
     gap: 10px;
 }
 
@@ -69,13 +83,17 @@
     transition: all 0.3s ease-in-out;
 }
 
+.grid-item.meal:hover {
+    transform: translateY(-4px);
+}
+
 /* 📌 Make Inactive Meals Slightly Smaller */
 .grid-item.meal.small {
     font-size: 0.9em;
     opacity: 0.8;
 }
 
-/* 📌 Responsive Design */
+/* 🌐 Responsive Design */
 @media (max-width: 900px) {
     .mess-menu-grid {
         grid-template-columns: 1fr; /* Stack on smaller screens */
@@ -90,4 +108,53 @@
     .meal-row {
         grid-template-columns: 1fr; /* Stack meals vertically */
     }
+}
+
+/* 🧭 Optional Dashboard Add-On Styles */
+
+/* 🧱 Top Heading or Welcome Card */
+.dashboard-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 25px 30px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* 📊 Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* 🟩 Cards in Grid */
+.dashboard-card {
+    background-color: #e6f4ea;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+    transition: transform 0.2s ease-in-out;
+    color: #1b3b1b;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 🎯 Card Titles */
+.dashboard-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    color: #2e7d32;
+}
+
+/* 📈 Card Content */
+.dashboard-card p {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
 }
